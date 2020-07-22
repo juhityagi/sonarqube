@@ -1,5 +1,6 @@
 pipeline{
     agent any
+    stages {
     stage('SCM') {
       git 'https://github.com/apt-x4869/sonarqube.git'
     }
@@ -20,3 +21,5 @@ pipeline{
     }
   
     }
+
+}
