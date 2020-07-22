@@ -1,5 +1,5 @@
+def project = "${env.JOB_NAME}".split('/')[0]
 pipeline {
-  def project = "${env.JOB_NAME}".split('/')[0]
   agent none
   stages {
     stage("build & SonarQube analysis") {
