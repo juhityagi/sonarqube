@@ -1,14 +1,6 @@
 pipeline {
   agent none
   stages {
-    
-    stage('Print ENV') {
-      agent any
-      steps {
-        sh 'printenv'
-        sh 'cat ${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_NUMBER}/log >> ${BUILD_NUMBER}.log'
-      }
-    }
     stage("build & SonarQube analysis") {
       agent any
       steps {
@@ -22,6 +14,13 @@ pipeline {
         timeout(time: 1, unit: 'HOURS') {
           waitForQualityGate abortPipeline: true
         }
+      }
+    }
+    stage('Print ENV') {
+      agent any
+      steps {
+        sh 'printenv'
+        sh 'cat ${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_NUMBER}/log >> ${BUILD_NUMBER}.log'
       }
     }
   }
