@@ -1,4 +1,4 @@
-node {
+/* node {
   stage('SCM') {
     git 'https://github.com/apt-x4869/sonarqube.git'
   }
@@ -17,4 +17,24 @@ stage("Quality Gate"){
       error "Pipeline aborted due to quality gate failure: ${qg.status}"
     }
   }
-}
+} */
+      pipeline {
+        agent none
+        stages {
+          stage("build & SonarQube analysis") {
+            agent any
+            steps {
+              withSonarQubeEnv('sonarserver') {
+                sh 'mvn clean package sonar:sonar'
+              }
+            }
+          }
+          stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+          }
+        }
+      }
