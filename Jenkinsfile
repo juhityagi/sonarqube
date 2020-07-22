@@ -21,7 +21,8 @@ pipeline {
       agent any
       steps {
         sh 'printenv'
-        sh 'cat ${JENKINS_HOME}/jobs/${jobBaseName}/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_NUMBER}.log'
+        sh 'echo ${project}'
+        sh 'cat ${JENKINS_HOME}/jobs/${project}/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_NUMBER}.log'
       }
     }
   }
