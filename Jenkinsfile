@@ -1,4 +1,3 @@
-def project = "SonarQubeDemo"
 pipeline {
   agent none
   stages {
@@ -19,6 +18,7 @@ pipeline {
     }
     stage('Print ENV') {
       agent any
+      def project="SonarQubeDemo"
       steps {
         sh 'printenv'
         sh 'echo ${project}'
