@@ -1,4 +1,5 @@
 pipeline {
+  def project = "${env.JOB_NAME}".split('/')[0]
   agent none
   stages {
     stage("build & SonarQube analysis") {
@@ -20,7 +21,7 @@ pipeline {
       agent any
       steps {
         sh 'printenv'
-        sh 'cat ${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_NUMBER}/log >> ${BUILD_NUMBER}.log'
+        sh 'cat ${JENKINS_HOME}/jobs/${jobBaseName}/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_NUMBER}.log'
       }
     }
   }
