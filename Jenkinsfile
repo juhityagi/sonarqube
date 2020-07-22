@@ -24,7 +24,7 @@ stage("Quality Gate"){
           stage("build & SonarQube analysis") {
             agent any
             steps {
-              withSonarQubeEnv('sonarserver') {
+              withSonarQubeEnv('SonarQube') {
                 sh 'mvn clean package sonar:sonar'
               }
             }
