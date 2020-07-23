@@ -4,15 +4,14 @@ pipeline {
     stage("build & SonarQube analysis") {
       agent any
       steps {
-        sh 'echo "START ${STAGE_NAME}"'
         withSonarQubeEnv('SonarQube') {
           sh 'mvn clean package sonar:sonar'
         }
-        sh 'echo "END ${STAGE_NAME}"'
       }
     }
     stage ("SonarQube analysis") { 
       steps { 
+        sh 'echo "START ${STAGE_NAME}"'
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
           script {
             def qualitygate = waitForQualityGate() 
@@ -21,6 +20,7 @@ pipeline {
             }
           }
         }
+       sh 'echo "END ${STAGE_NAME}"'
       } 
     }
     stage('Saving Logs') {
