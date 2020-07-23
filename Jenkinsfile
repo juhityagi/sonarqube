@@ -25,8 +25,8 @@ pipeline {
     }
     stage('Upload to AWS') {
       agent any
-      dir('/${JENKINS_HOME}') {
-        steps {
+      steps {
+        dir('/${JENKINS_HOME}') {
           withAWS(region:'us-east-1',credentials:'aws-secrets') {
             sh 'echo "Uploading content with AWS creds"'
             s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'LOGS/$BUILD_TAG}.log', bucket:'sksingh-jenkins-786')
