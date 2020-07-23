@@ -11,9 +11,6 @@ pipeline {
     }
     stage ("SonarQube analysis") { 
       steps { 
-        withSonarQubeEnv('SonarQube') { 
-          sh "/opt/sonar-scanner/bin/sonar-scanner" 
-        } 
         script {
           def qualitygate = waitForQualityGate() 
           if (qualitygate.status != "OK") { 
