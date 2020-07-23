@@ -19,8 +19,16 @@ pipeline {
     stage('Print ENV') {
       agent any
       steps {
-        sh 'printenv'
+        sh 'echo "Saving logs to a new file in ${JENKINS_HOME}/LOGS folder..."'
         sh 'cat ${JENKINS_HOME}/jobs/SonarQubeDemo/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ~/LOGS/${BUILD_TAG}.log'
+      }
+    }
+    stage('Upload to AWS') {
+      agent any
+      steps {
+        withAWS(region:'us-east-1',credentials:'aws-secrets') {
+          sh 'echo "Uploading content with AWS creds"'
+          s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'~/LOGS/$BUILD_TAG}.log', bucket:'sksingh-jenkins-786')
       }
     }
   }
