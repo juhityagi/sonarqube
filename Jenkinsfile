@@ -24,18 +24,9 @@ pipeline {
     stage('Saving Logs') {
       agent any
       steps {
-        script {
-          def logContent = Jenkins.getInstance()
-              .getItemByFullName(env.JOB_NAME)
-              .getBuildByNumber(
-                  Integer.parseInt(env.BUILD_NUMBER))
-              .logFile.text
-          // copy the log in the job's own workspace
-          writeFile file: "buildlog.txt", text: logContent
           sh 'printenv'
           sh 'echo "Saving logs to a new file in ${JENKINS_HOME}/LOGS folder..."'
           sh 'cat ${JENKINS_HOME}/jobs/SonarQubeDemo/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_TAG}.txt'
-        }
       }
     }
     stage('Upload to AWS') {
