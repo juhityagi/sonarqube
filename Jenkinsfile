@@ -20,7 +20,7 @@ pipeline {
       agent any
       steps {
         sh 'printenv'
-        sh 'cat ${JENKINS_HOME}/jobs/SonarQubeDemo/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_NUMBER}.log'
+        sh 'cat ${JENKINS_HOME}/jobs/SonarQubeDemo/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ~/${BUILD_NUMBER}.log'
       }
     }
   }
