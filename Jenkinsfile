@@ -29,7 +29,7 @@ pipeline {
           sh 'pwd'
           withAWS(region:'us-east-1',credentials:'aws-secrets') {
             sh 'echo "Uploading content with AWS creds"'
-            s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: ${BUILD_TAG}.log , bucket:'sksingh-jenkins-786')
+            s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "${env.BUILD_TAG}.log" , bucket:'sksingh-jenkins-786')
           }
       }
     }
