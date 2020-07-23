@@ -28,7 +28,7 @@ pipeline {
           sh 'printenv'
           sh 'echo "Saving logs to a new file in ${JENKINS_HOME}/LOGS folder..."'
           sh 'cat ${JENKINS_HOME}/jobs/SonarQubeDemo/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_TAG}.txt'
-          sh 'sudo /home/ubuntu/generate.py ${BUILD_TAG}.txt'
+          sh './generate.py ${BUILD_TAG}.txt'
       }
     }
     stage('Upload to AWS') {
