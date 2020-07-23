@@ -16,6 +16,16 @@ pipeline {
         }
       }
     }
+    stage ("SonarQube analysis") { 
+      steps { 
+        withSonarQubeEnv('SonarQube') { 
+          sh "/opt/sonar-scanner/bin/sonar-scanner" 
+        } 
+        def qualitygate = waitForQualityGate() if (qualitygate.status != "OK") { 
+          error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}" 
+        } 
+      } 
+    }
     stage('Print ENV') {
       agent any
       steps {
