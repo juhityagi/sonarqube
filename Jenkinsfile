@@ -36,7 +36,7 @@ pipeline {
           def date = new Date().format("yyyy-MM-dd", TimeZone.getTimeZone('UTC'))
           withAWS(region:'us-east-1',credentials:'aws-secrets') {
           sh 'echo "Uploading content with AWS creds"'
-          s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "${env.BUILD_TAG}.txt" , bucket:'sksingh-jenkins-786', path: "SonarLogs/${date}")
+          s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "${env.BUILD_TAG}.txt" , bucket:'sksingh-jenkins-786', path: "SonarLogs/${date}/${env.BUILD_TAG}.txt")
         }
         }
       }
