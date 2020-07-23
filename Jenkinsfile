@@ -12,16 +12,16 @@ pipeline {
     stage ("SonarQube analysis") { 
       agent none
       steps { 
-        sh 'echo "START ${STAGE_NAME}"'
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+          sh 'echo "START ${STAGE_NAME}"'
           script {
             def qualitygate = waitForQualityGate() 
             if (qualitygate.status != "OK") { 
               error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}" 
             }
           }
+          sh 'echo "END ${STAGE_NAME}"'
         }
-       sh 'echo "END ${STAGE_NAME}"'
       } 
     }
     stage('Saving Logs') {
