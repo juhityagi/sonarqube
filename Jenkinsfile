@@ -13,14 +13,12 @@ pipeline {
       agent none
       steps { 
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-          sh 'echo "START ${STAGE_NAME}"'
           script {
             def qualitygate = waitForQualityGate() 
             if (qualitygate.status != "OK") { 
               error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}" 
             }
           }
-          sh 'echo "END ${STAGE_NAME}"'
         }
       } 
     }
