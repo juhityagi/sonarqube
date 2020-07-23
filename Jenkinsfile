@@ -10,6 +10,7 @@ pipeline {
       }
     }
     stage ("SonarQube analysis") { 
+      agent none
       steps { 
         sh 'echo "START ${STAGE_NAME}"'
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
