@@ -4,9 +4,11 @@ pipeline {
     stage("build & SonarQube analysis") {
       agent any
       steps {
+        sh 'echo "START ${env.STAGE_NAME}"'
         withSonarQubeEnv('SonarQube') {
           sh 'mvn clean package sonar:sonar'
         }
+        sh 'echo "END ${env.STAGE_NAME}"'
       }
     }
     stage ("SonarQube analysis") { 
