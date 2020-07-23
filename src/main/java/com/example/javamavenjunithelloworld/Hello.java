@@ -38,5 +38,25 @@ public class Hello {
             printer.println(HELLO);
         }
     }
+    
+    /**
+     * Fail Code Coverage!".
+     *
+     * @param printer PrintStream to write output to.
+     */
+	
+	  public void failCodeCoverage(PrintStream printer) { for (short i = 0; i <
+	  times; i++) { printer.println(HELLO + "from failCodeCoverage"); }
+	  printer.println(HELLO + "from failCodeCoverage 1"); printer.println(HELLO +
+	  "from failCodeCoverage 2"); printer.println(HELLO +
+	  "from failCodeCoverage 3"); printer.println(HELLO +
+	  "from failCodeCoverage 4"); printer.println(HELLO +
+	  "from failCodeCoverage 5"); printer.println(HELLO +
+	  "from failCodeCoverage 6"); printer.println(HELLO +
+	  "from failCodeCoverage 7"); printer.println(HELLO +
+	  "from failCodeCoverage 8"); printer.println(HELLO +
+	  "from failCodeCoverage 9"); printer.println(HELLO +
+	  "from failCodeCoverage 10"); }
+	 
 
 }
