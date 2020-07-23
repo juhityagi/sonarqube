@@ -21,10 +21,10 @@ pipeline {
         }
       } 
     }
-    stage('Print ENV') {
+    stage('Saving Logs') {
       agent any
-      sh 'printenv'
       steps {
+        sh 'printenv'
         sh 'echo "Saving logs to a new file in ${JENKINS_HOME}/LOGS folder..."'
         sh 'cat ${JENKINS_HOME}/jobs/SonarQubeDemo/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_TAG}.txt'
       }
