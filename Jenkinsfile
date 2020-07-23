@@ -26,7 +26,7 @@ pipeline {
     stage('Upload to AWS') {
       agent any
       steps {
-        dir('/${JENKINS_HOME}/LOGS/') {
+        dir('${JENKINS_HOME}/LOGS/') {
           sh 'pwd'
           withAWS(region:'us-east-1',credentials:'aws-secrets') {
             sh 'echo "Uploading content with AWS creds"'
