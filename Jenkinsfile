@@ -26,7 +26,7 @@ pipeline {
       agent any
       steps {
         script {
-          def (project, branch) = ${JOB_NAME}.tokenize( '/' )
+          def project = ${JOB_NAME}.split( '/' )[0]
           sh 'printenv'
           sh 'echo "Saving logs to a new file in ${JENKINS_HOME}/LOGS folder..."'
           sh 'cat ${JENKINS_HOME}/jobs/${project}/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_TAG}.txt'
