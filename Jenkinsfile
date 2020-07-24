@@ -1,4 +1,3 @@
-PROJECT_NAME='SonarQubeDemo'
 pipeline {
   agent none
   environment {
@@ -31,7 +30,7 @@ pipeline {
       steps {
           sh 'printenv'
           sh 'echo "Saving logs to a new file in ${JENKINS_HOME}/LOGS folder..."'
-          sh 'cat ${JENKINS_HOME}/jobs/${env.PROJECT_NAME}/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_TAG}.txt'
+          sh 'cat ${JENKINS_HOME}/jobs/${PROJECT_NAME}/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_TAG}.txt'
           sh 'pwd'
           sh 'python3 /home/ubuntu/generate.py ${BUILD_TAG}.txt'
       }
