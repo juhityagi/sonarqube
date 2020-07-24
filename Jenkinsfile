@@ -1,7 +1,7 @@
 pipeline {
   agent none
   environment {
-    PROJECT_NAME=${JOB_NAME}.split('/')[0]
+    PROJECT_NAME="${JOB_NAME}".split('/')[0]
   }
   stages {
     stage("build & SonarQube analysis") {
