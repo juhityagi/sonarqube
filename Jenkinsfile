@@ -2,7 +2,7 @@ def project="SonarQubeDemo"
 pipeline {
   agent none
   environment {
-    PROJECT_NAME= ${project}
+    PROJECT_NAME= "${project}"
   }
   stages {
     stage("build & SonarQube analysis") {
