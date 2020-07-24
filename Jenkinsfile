@@ -49,6 +49,7 @@ pipeline {
             sh 'echo "Uploading content with AWS creds"'
             s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "${env.BUILD_TAG}.txt" , bucket:'sksingh-jenkins-786', path: "SonarLogs/${date}/${env.BUILD_TAG}.txt")
             s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "Sonar-analysis-${env.BUILD_TAG}.txt" , bucket:'sksingh-jenkins-786', path: "SonarLogs/${date}/Sonar-analysis-${env.BUILD_TAG}.txt")
+            s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file: "${env.WORKSPACE}/target/surefire-reports/unit-test" , bucket:'sksingh-jenkins-786', path: "SonarLogs/${date}/Unit-Test-${env.BUILD_TAG}")
           }
         }
       }
