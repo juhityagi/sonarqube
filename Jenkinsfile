@@ -34,6 +34,9 @@ pipeline {
           sh 'cat ${JENKINS_HOME}/jobs/${PROJECT_NAME}/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_TAG}.txt'
           sh 'pwd'
           sh 'python3 /home/ubuntu/generate.py ${BUILD_TAG}.txt'
+          sh 'mkdir ${WORKSPACE}/target/surefire-reports/unit-test'
+          sh 'cp ${WORKSPACE}/target/surefire-reports/*.txt ${WORKSPACE}/target/surefire-reports/unit-test'
+          sh 'ls ${WORKSPACE}/target/surefire-reports/unit-test'
       }
     }
     stage('Upload to AWS') {
