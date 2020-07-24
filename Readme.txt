@@ -1,1 +1,1 @@
-This is the Sample SonarQube Demo Pipeline
+This is the Sample SonarQube Demo Pipeline.
