@@ -1,4 +1,4 @@
-def PROJECT_NAME='SonarQubeDemo'
+PROJECT_NAME='SonarQubeDemo'
 pipeline {
   agent none
   stages {
