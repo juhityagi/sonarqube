@@ -1,4 +1,4 @@
-def project="SonarQubeDemo"
+def project="${JOB_NAME}".split('/')[0]
 pipeline {
   agent none
   environment {
