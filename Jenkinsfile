@@ -25,11 +25,14 @@ pipeline {
     stage('Saving Logs') {
       agent any
       steps {
+        script {
+          def (project, branch) = ${JOB_NAME}.tokenize( '/' )
           sh 'printenv'
           sh 'echo "Saving logs to a new file in ${JENKINS_HOME}/LOGS folder..."'
-          sh 'cat ${JENKINS_HOME}/jobs/SonarQubeDemo/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_TAG}.txt'
+          sh 'cat ${JENKINS_HOME}/jobs/${project}/branches/${GIT_BRANCH}/builds/${BUILD_NUMBER}/log >> ${BUILD_TAG}.txt'
           sh 'pwd'
           sh 'python3 /home/ubuntu/generate.py ${BUILD_TAG}.txt'
+        }
       }
     }
     stage('Upload to AWS') {
