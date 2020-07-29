@@ -13,6 +13,7 @@ pipeline {
         }
       }
     }
+  }
     stage ("SonarQube analysis") { 
       agent none
       steps { 
